@@ -54,7 +54,7 @@ def cnn_ts_batchnormal_way1(filter0, rate0, unit0, b_size):
     model.add(Dense(3, activation = 'softmax'))
     adam = Adam(lr = 0.001)  
     model.compile(loss = 'categorical_crossentropy', optimizer = adam, metrics = ['accuracy'])
-    callback = EarlyStopping(monitor = 'loss', patience = 10, verbose = 1, mode = 'auto')
+    callback = EarlyStopping(monitor = 'acc', patience = 10, verbose = 1, mode = 'auto')
     if way == 0:
         model.fit(train_x, np_utils.to_categorical(train_y), epochs = 1000, batch_size = b_size, validation_split = 0.20, callbacks = [callback])
         loss, acc = model.evaluate(train_x, np_utils.to_categorical(train_y))
