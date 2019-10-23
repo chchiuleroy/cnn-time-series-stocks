@@ -67,7 +67,7 @@ def model_fit(model, x_train, y_train, x_valid, y_valid, b_size):
     from keras.callbacks import EarlyStopping
     adam = Adam(lr = 0.001)  
     model.compile(loss = 'categorical_crossentropy', optimizer = adam, metrics = ['accuracy'])
-    callback = EarlyStopping(monitor = 'loss', patience = 10, verbose = 1, mode = 'auto')
+    callback = EarlyStopping(monitor = 'acc', patience = 10, verbose = 1, mode = 'auto')
     model.fit(x_train, np_utils.to_categorical(y_train), epochs = 1000, batch_size = b_size, validation_data = (x_valid, np_utils.to_categorical(y_valid)), 
               callbacks = [callback])
     loss, acc = model.evaluate(x_train, np_utils.to_categorical(y_train))
